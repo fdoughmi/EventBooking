@@ -24,7 +24,7 @@ public with sharing class CaseTriggerHelper {
         } else if(caseBeforeInsert.Origin == 'Phone' && contactListSize >= 4) {
             caseBeforeInsert.addError('Phone request are only allowed to have three attendee');
         }else{
-            caseBeforeInsert.addError('Unknown Error');
+            caseBeforeInsert.addError('Unknown Error: Cannot handle this case');
         }
     }
 
