@@ -34,4 +34,5 @@ public with sharing class ExternalSystemHelper {
         // After inserting the task, we should send automatic email to the contact
         sendMail(contact.email, caseToBeHandledId);
     } 
+
 }
