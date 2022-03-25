@@ -1,4 +1,5 @@
 public with sharing class ExternalSystemCallOut {
+    
     /**
      * @description This class has a future callout method in order to fire it in the {ExternalSystemService} class.
      * @param caseToBeHandled It takes the Case that need to be handled as parameter
