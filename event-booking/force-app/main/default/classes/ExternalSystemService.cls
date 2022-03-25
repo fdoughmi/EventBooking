@@ -6,6 +6,7 @@ public  class ExternalSystemService {
     public void registerAttendees(Case caseToBeHandled){
         List<Account> accountList = [SELECT id FROM Account where id = :caseToBeHandled.AccountId];
         Set<Id> setOfAccountsIdSet = (new Map<Id,SObject>(accountList)).keySet();
-        ExternalSystemCallout.fireCallout(caseToBeHandled);
+        Id caseToBeHandledId = caseToBeHandled.Id;
+        ExternalSystemCallout.fireCallout(caseToBeHandledId,setOfAccountsIdSet);
     } 
 }

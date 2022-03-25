@@ -8,7 +8,7 @@ public with sharing class ExternalSystemCallOut {
     private static final String NAMED_CREDENTIAL_ANIMALS_URL='callout:ExternalServiceUrl/animals'; 
 
     @future(callout=true)
-    public static void fireCallout(Case caseToBeHandled) {
+    public static void fireCallout(Id caseToBeHandledId, Set<Id> setOfAccountsIdSet) {
         List<Contact> contactList = [SELECT id,name, email, AccountId FROM Contact where AccountId IN : setOfAccountsIdSet ];
         for(Contact contact: contactList) {
             Http http = new Http();
@@ -21,11 +21,11 @@ public with sharing class ExternalSystemCallOut {
             HttpResponse response = http.send(request);
             // Parse the JSON response
             if (response.getStatusCode() != 201) {
-                Logger.error('The status code returned was not expected: ' +
+                Log.error('The status code returned was not expected: ' +
                 response.getStatusCode() + ' ' + response.getStatus());
             } else {
                 // Everything went as expected.
-                ExternalSystemHelper.notifyAttendeeByEmail(contact,caseToBeHandled.Id);
+                ExternalSystemHelper.notifyAttendeeByEmail(contact,caseToBeHandledId);
             }
         }
     }
