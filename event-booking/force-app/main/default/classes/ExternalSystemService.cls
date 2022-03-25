@@ -1,11 +1,4 @@
 public  class ExternalSystemService {
-
-    private String webServiceURL;
-
-    public ExternalSystemService(){
-        this.webServiceURL = 'https://th-apex-http-callout.herokuapp.com/animals';
-    }
-
     public void registerAttendees(Case r){
             for(Account a : [SELECT id FROM Account where id = :r.AccountId]){
                 for(Contact c : [SELECT id,name, email FROM Contact where accountid =: a.id ]){
